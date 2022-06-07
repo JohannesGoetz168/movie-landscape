@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/components"
+	xmlns:ch="http://java.sun.com/jsf/composite/components/highlighter"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="updateIds"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+	<span id="#{cc.clientId}" class="ui-widget-content"> 
+	<h:panelGroup rendered="#{!userBean.loggedIn}">
+		<h:form rendered="#{userBean.showLogin}">
+			<p:panelGrid styleClass="center" columns="2" cellpadding="5">
+    			<p:outputLabel value="Login name:" for="nickname" />
+    			<p:inputText id="nickname" value="#{loginAction.loginName}" required="true" requiredMessage="Login name is required" />
+    			<p:outputLabel value="Password:" for="password" />
+    			<p:password id="password" value="#{loginAction.password}" required="true" requiredMessage="Password is required" />
+    		</p:panelGrid>	
+				<p:commandButton value="Login" action="#{loginAction.login()}" update="#{cc.clientId} #{cc.attrs.updateIds}" />
+		</h:form>
+		<h:form rendered="#{userBean.showLogin}">
+    		<p:commandLink update="#{cc.clientId}" action="#{userBean.setShowLogin(false)}">
+    			<h:outputText value="Don't have a MovieLandscape account? Sign up." />
+    		</p:commandLink>	
+    	</h:form>		
+		<h:form rendered="#{!userBean.showLogin}">
+			<p:panelGrid styleClass="center" columns="2" cellpadding="5">
+    			<p:outputLabel value="Login name:" for="nickname" />
+    			<p:inputText id="nickname" value="#{registerAction.userName}" required="true" requiredMessage="Login name is required" />
+    			<p:outputLabel value="Email:" for="email" />
+    			<p:inputText id="email" value="#{registerAction.email}" required="true" validatorMessage="Email is not valid" requiredMessage="Email is required" >
+   					 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				</p:inputText>
+    			<p:outputLabel value="Password:" for="password" />
+    			<p:password id="password" value="#{registerAction.password}" validatorMessage="Passwords do not match" match="repeated_password" required="true" requiredMessage="Password is required"/>
+    			<p:outputLabel value="Retype password:" for="repeated_password" />
+    			<p:password id="repeated_password" value="#{registerAction.password}" validatorMessage="Passwords do not match" required="true" requiredMessage="Please retype your password."/>
+    		</p:panelGrid>	
+				<p:commandButton value="Register" action="#{registerAction.register()}" update="#{cc.clientId} #{cc.attrs.updateIds}"/>
+    	</h:form>
+    	<h:form rendered="#{!userBean.showLogin}">
+    		<p:commandLink update="#{cc.clientId}" action="#{userBean.setShowLogin(true)}">
+    			<h:outputText value="Already have a MovieLandscape account? Log in." />
+    		</p:commandLink>	
+		</h:form>
+	</h:panelGroup>
+    <h:form rendered="#{userBean.loggedIn}">
+		<p:panelGrid styleClass="center" columns="1" cellpadding="5">
+			<p:panelGrid styleClass="center" columns="2" cellpadding="5">
+				<h:outputLabel value="Restrict recommendations to those on Amazon Prime:" for="restrictToPrime" /> 
+				<p:selectBooleanCheckbox id="restrictToPrime" value="#{userBean.user.configuration.restrictToPrime}">
+            		<p:ajax update="#{cc.attrs.updateIds}" listener="#{recommendationBean.calculateRecommendations()}" />
+        		</p:selectBooleanCheckbox>
+    		</p:panelGrid>
+			<p:panelGrid styleClass="center" columns="2" cellpadding="5">
+        		<h:outputLabel value="Sculpting amount:" for="selectSculptAmount" />
+        		<p:selectOneButton id="selectSculptAmount" value="#{userBean.sculptAmount}">
+    				<p:ajax update="#{cc.attrs.updateIds}" partialSubmit="true" />
+        			<f:selectItem itemLabel="Default" itemValue="0.0"  />
+        			<f:selectItem itemLabel="Small" itemValue="0.05" />
+        			<f:selectItem itemLabel="Medium" itemValue="0.07" />
+        			<f:selectItem itemLabel="Big" itemValue="0.15" />
+    			</p:selectOneButton>
+			</p:panelGrid>
+			<p:panelGrid styleClass="center" columns="2" cellpadding="5">
+    			<h:outputLabel value="Sculpting patch size:" for="selectSculptPatchSize" />
+    			<p:selectOneButton id="selectSculptPatchSize" value="#{userBean.sculptPatchSize}">
+    				<p:ajax update="#{cc.attrs.updateIds}" partialSubmit="true" />
+        			<f:selectItem itemLabel="Default" itemValue="0.0"  />
+        			<f:selectItem itemLabel="Small" itemValue="1.5" />
+        			<f:selectItem itemLabel="Medium" itemValue="2.5" />
+        			<f:selectItem itemLabel="Big" itemValue="3.5" />
+    			</p:selectOneButton>
+			</p:panelGrid>
+			<p:dataGrid var="blockedMovie" value="#{userBean.user.configuration.blockedMovielensIds.toArray()}" columns="10" layout="grid"	rows="10" 
+				paginator="#{userBean.user.configuration.blockedMovielensIds.size() > 10}" paginatorPosition="bottom" rendered="#{!userBean.user.configuration.blockedMovielensIds.isEmpty()}">
+	        		<f:facet name="header">
+	          			Your blocked movies
+	        		</f:facet>
+	 				<div class="blockedMovie">
+						<img src="/movie_poster/#{blockedMovie}.jpg" class="detailsImage"/>
+						<div class="unblockOverlay" > 
+							<p:commandButton icon="ui-icon-closethick" title="Remove from blocklist" styleClass="unblockButton"
+								action="#{userBean.removeItemFromBlockList(blockedMovie)}" update="#{cc.clientId} #{cc.attrs.updateIds}" />
+						</div>
+					</div> 
+    		</p:dataGrid>
+		</p:panelGrid>
+    	<p:commandButton value="Logout" action="#{userBean.logout()}" update="#{cc.clientId} #{cc.attrs.updateIds}"/>
+    </h:form>
+	</span>
+</composite:implementation>
+</html>

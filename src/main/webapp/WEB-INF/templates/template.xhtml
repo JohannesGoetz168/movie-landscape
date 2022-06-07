@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>MovieLandscape</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/img/favicon.ico"/>
+	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/img/favicon.ico"/>
+	
+	<h:outputScript name="js/lib/three.js"></h:outputScript>
+	<h:outputScript name="js/lib/OrbitControls.js"></h:outputScript>
+	<h:outputScript name="js/lib/StackBlur.js"></h:outputScript>
+	<h:outputScript name="js/lib/threex.rendererstats.js"></h:outputScript>
+	<h:outputScript name="js/lib/Stats.js"></h:outputScript>
+	<h:outputScript name="js/lib/Lut.js"></h:outputScript>	
+	<h:outputScript name="js/Constants.js"></h:outputScript>
+	<h:outputScript name="js/CanvasHelper.js"></h:outputScript>
+	<h:outputScript name="js/Shaders.js"></h:outputScript>
+	<h:outputScript name="js/skulpt.js"></h:outputScript>
+	<h:outputScript name="js/Landscape3D.js"></h:outputScript>
+	<h:outputScript name="js/UserEventHandler.js"></h:outputScript>
+	<h:outputScript name="js/Landscape3DFacade.js"></h:outputScript>
+	<h:outputScript name="js/MiniMap.js"></h:outputScript>
+	<ui:insert name="customhead" />
+</h:head>
+<h:body>
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputStylesheet name="css/detailsComponent.css" />
+	<h:outputStylesheet name="css/recommenderComponent.css" />
+	<h:outputStylesheet name="css/minimapComponent.css" />
+	<h:outputStylesheet name="css/userArea.css" />
+	<div class="content">
+		<ui:insert name="content">
+			Main Content
+		</ui:insert>
+	</div>
+
+
+	<div style="clear: both" />
+</h:body>
+</html>

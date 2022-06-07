@@ -1,0 +1,52 @@
+#detailsComponent {
+	height: 150px;
+	position:absolute; 
+	bottom: 0px;
+	width: 100%;
+	background: rgba(87, 178, 203, 0.7);
+	border-left: none;
+	border-right: none;
+	margin-left: 1px;
+	border-bottom:none;
+	z-index: 2;
+}
+
+#detailsComponent .detailsTitle {
+	text-decoration: blink;
+	font-style: oblique;
+	font-weight: bold;
+	font-size: 130%;
+}
+
+#detailsComponent .detailsImage {
+	height: 130px; 
+	width: auto; 
+	padding-right:5px;
+}
+
+#detailsComponent .info {
+	width: 40%;
+	float: left;
+	border: none;
+}
+
+#detailsComponent .plot {
+	border: none;
+}
+
+#detailsComponent .plotTitle {
+	font-style: oblique;
+	font-weight: bold;
+	font-size: 100%;
+}
+
+#detailsComponent\:detailsForm\:detailsImageBox {
+	height: 120px;
+	width: auto;
+	margin: 5px;
+	float: left;
+}
+
+#detailsComponent a {
+	text-decoration: none;
+}

@@ -1,0 +1,159 @@
+/* Main Page - General */
+.content {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	height: 100%;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Calibri", sans-serif;
+	overflow: hidden;
+}
+
+/* Main Page - Components */
+#terrainSceneComponent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #F4E39F;
+	overflow: hidden;
+	z-index: 1;
+}
+
+#terrainSceneComponent\:loader {
+	width: 150px;
+	height: 200px;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+#hud {
+	position: absolute; 
+	bottom: 0px; 
+	width: 100%; 
+	display: table;  
+	height: 235px;
+}
+
+#hud_left {
+	width: 275px; 
+	display:table-cell; 
+	position:relative;
+}
+
+#hud_middle {
+	height: inherit; 
+	position: relative;
+}
+
+#hud_right {
+	width: 268px; 
+	display: table-cell; 
+	position: relative;
+}
+
+#toolboxComponent {
+	padding: 0px;
+	width: auto;
+	height: auto;
+	position: absolute;
+	z-index: 2;
+	left: 0px;
+	top: 0%;
+	margin-top: 0px;
+}
+
+.settingsButton {
+	position: absolute !important;
+	right: 0px;
+	top: 0px;
+	z-index: 2;
+}
+
+/* Main Page - Helpers */
+#loader {
+	width: 150px;
+	height: 200px;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.overlay {
+	pointer-events: all;
+	opacity: 0;
+}
+
+.label {
+	opacity: 0;
+	pointer-events: none;
+	font-size: 6px;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+/* Primefaces */
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+}
+.ui-widget-content {
+	background: rgba(87, 178, 203, 0.3);
+}
+
+.ui-menuitem-icon.shovel {
+	background: url(../../resources/img/cursor/shovel01.png) no-repeat;
+	background-size: 100%;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+}
+
+.ui-menuitem-icon.move {
+	background: url(../../resources/img/cursor/move.png) no-repeat;
+	background-size: 100%;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+}
+
+.ui-menuitem-icon.seek {
+	background: url(../../resources/img/cursor/lupe_dark.png) no-repeat;
+	background-size: 100%;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+}
+
+.ui-icon.settings-menuitem-icon {
+	background: url(../../resources/img/cursor/settings.png) no-repeat;
+	background-size: 100%;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+}
+
+.toolsItem.ui-state-active {
+	background: #ededf0;
+}
+
+.ui-lightbox-nav-right {
+	visibility: hidden !important;
+}
+
+.ui-lightbox-nav-left {
+	visibility: hidden !important;
+}
+
+.ui-tagcloud-strength-5 {
+	font-size: 70%;
+}

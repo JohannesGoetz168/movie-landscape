@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/components"
+	template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+		<p:dialog id="userAreaDialog" header="User Area" widgetVar="userAreaDialog" showHeader="true" modal="true" resizable="false">
+			<cc:user_area id="userArea" updateIds="homeForm:growl :terrainSceneComponent:updateRecommendations :recommenderComponent :terrainSceneComponent:updateUserConfiguration" />
+    	</p:dialog>
+		<h:form id="homeForm">
+			<p:remoteCommand name="showDetails"  actionListener="#{terrainSceneBean.changeCurrentItem}" update=":detailsComponent"/>
+			<p:remoteCommand name="changePreferences" actionListener="#{terrainSceneBean.changePreferences}" update=":terrainSceneComponent:updateRecommendations :recommenderComponent :minimapComponent:updateMinimapHeights :minimapComponent:updateRecommendations :detailsComponent" />
+			<p:remoteCommand name="addSample" actionListener="#{terrainSceneBean.addSample()}" />
+			<p:remoteCommand name="removeSample" actionListener="#{terrainSceneBean.removeSample()}" />
+			<p:growl id="growl" showDetail="false" sticky="true" /> 
+			<p:commandButton styleClass="settingsButton" onclick="PF('userAreaDialog').show()" icon="settings-menuitem-icon" ajax="true" /> 
+		</h:form> 
+		<cc:toolbox id="toolboxComponent" />
+		<cc:terrainscene_component id="terrainSceneComponent" />
+		<div id="hud">
+			<div id="hud_left">
+				<cc:minimap_component id="minimapComponent" />
+			</div>
+			<div id="hud_middle">
+		    	<cc:details_component id="detailsComponent"/>
+			</div>
+			<div id="hud_right">
+				<cc:recommender_component id="recommenderComponent" updateIds=":terrainSceneComponent:updateRecommendations :userArea"/>
+			</div>
+		</div>
+		
+	</ui:define>
+</ui:composition>

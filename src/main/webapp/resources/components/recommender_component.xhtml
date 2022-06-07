@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/components"
+	xmlns:ch="http://java.sun.com/jsf/composite/components/highlighter"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="updateIds"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+	<span id="#{cc.clientId}" class="ui-widget-content ui-corner-top"> 
+			<h:form>
+				<p:dataGrid var="recommendation" value="#{recommendationBean.recommendations}" columns="3" layout="grid"
+        					rows="6" paginator="false">
+	        		<f:facet name="header">
+	          			Recommendations
+	        		</f:facet>
+	 				<div class="recommendation">
+						<img src="/movie_poster/#{recommendation.movieLensId}.jpg" class="recommendationImage"/>
+						<div class="recommendationRemoveOverlay" onmouseover="landscapeFacade.changeDetailItem(#{recommendation.movieLensId})"> 
+							<p:commandButton icon="ui-icon-closethick" title="Do not recommend #{recommendation.title}" styleClass="recommendationRemoveButton"
+								action="#{userBean.addItemToBlockList(recommendation.movieLensId)}" update="@form #{cc.attrs.updateIds}" />
+						</div>
+					</div> 
+    		</p:dataGrid>
+			</h:form>
+	</span>
+</composite:implementation>
+</html>

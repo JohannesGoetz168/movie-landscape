@@ -1,0 +1,52 @@
+#userAreaDialog{
+	background: rgba(87, 178, 203, 0.8);
+	border: none; 
+}
+
+#userArea {
+	text-align: center;
+	border: none; 
+}
+
+#userArea table, #userArea td, #userArea tr{
+	border: none;
+}
+
+#userArea .detailsImage {
+	height: 60px; 
+	width: 45; 
+}
+
+#userArea .ui-datagrid-content {
+	border: none;
+}
+
+.blockedMovie {
+	position: relative;
+	margin: auto; 
+	padding: 0px; 
+	width: 45px; 
+	height: 60px;
+	border: none;
+}
+
+.blockedMovie .unblockOverlay {
+	position: absolute;
+	top: 0px;
+	right: 4px;
+	visibility: hidden;
+	width: 45px;
+	height: 60px;
+}
+
+.blockedMovie:hover .unblockOverlay {
+	visibility: visible;
+}
+
+button.ui-button.unblockButton {
+	background: rgba(0, 0, 0, 0.4) !important;
+	border: none;
+	box-shadow: unset !important;
+	position: absolute;
+	right: 0px;
+}

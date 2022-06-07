@@ -1,0 +1,15 @@
+#minimapComponent {
+	position:absolute; 
+	bottom: 0px; 
+	width: 275px; 
+	height: 235px;
+	border-left: none;
+	border-bottom: none;
+	background: rgba(100, 0, 0, 0.4);
+	z-index: 2;
+}
+
+#minimap_header {
+	text-align: center;
+	padding: 4px 10px;
+}
