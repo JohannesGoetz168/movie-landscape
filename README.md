@@ -1,4 +1,4 @@
-# MovieLandscape - An Interactive Recommender System Using a 3D Landscape
+# MovieLandscape - An Interactive Movie Recommender System Using a 3D Landscape
 In a world where, in most cases, we do not have access to interactive methods to control recommender systems that we encounter in our daily lives, I present the MovieLandscape!
 
 This web application shows how a map metaphor can be used to make recommender systems more transparent and increase the level of control that users can exercise.
